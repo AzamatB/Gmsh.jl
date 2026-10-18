@@ -41,5 +41,3 @@ rm(path, recursive=true)
     @test gmsh.option.getNumber("General.Verbosity") == 2
     Gmsh.finalize()
 end
-
-include("test_logger_error_path.jl")

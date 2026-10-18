@@ -1,7 +1,7 @@
 module Gmsh
 
 import gmsh_jll
-include("gmsh_api.jl")
+include(gmsh_jll.gmsh_api)
 import .gmsh
 export gmsh
 
