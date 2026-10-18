@@ -1,7 +1,18 @@
 module Gmsh
 
 import gmsh_jll
-include(gmsh_jll.gmsh_api)
+
+# Generated output variables can be named `error` (logger.getLastError). Bind
+# exception calls before lowering so those locals do not shadow Base.error.
+function _qualify_api_errors(ex)
+    ex isa Expr || return ex
+    if ex.head === :call && ex.args[1] === :error
+        ex.args[1] = GlobalRef(Base, :error)
+    end
+    foreach(_qualify_api_errors, ex.args)
+    return ex
+end
+include(_qualify_api_errors, gmsh_jll.gmsh_api)
 import .gmsh
 export gmsh
 

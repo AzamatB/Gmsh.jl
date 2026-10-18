@@ -1,5 +1,7 @@
 using Test
 
+include("test_logger_error_path.jl")
+
 const path = mktempdir()
 
 @testset "t1.jl" begin
