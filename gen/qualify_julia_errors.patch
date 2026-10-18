@@ -1,0 +1,16 @@
+--- a/api/GenApi.py
++++ b/api/GenApi.py
+@@ -2376,11 +2376,11 @@
+             if name == "getLastError":  # special case for getLastError() function
+                 self.fwrite(
+                     f,
+-                    '    ierr[] != 0 && error("Could not get last error")\n')
++                    '    ierr[] != 0 && Base.error("Could not get last error")\n')
+             else:
+                 self.fwrite(
+                     f,
+-                    '    ierr[] != 0 && error(gmsh.logger.getLastError())\n')
++                    '    ierr[] != 0 && Base.error(gmsh.logger.getLastError())\n')
+             for a in args:
+                 if a.julia_post: self.fwrite(f, "    " + a.julia_post + "\n")
+             r = (["api_result_"]) if rtype else []
